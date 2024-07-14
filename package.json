@@ -10,6 +10,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "ethers": "^6.13.1"
+    "@ethersproject/providers": "^5.7.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.1",
+    "qrcode": "^1.5.3"
   }
 }
