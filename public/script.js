@@ -14,10 +14,10 @@ document.getElementById('fetch-hashes').addEventListener('click', async () => {
             const [name, date, manufacturer, wineType] = await wineResponse.json();
 
             const wineInfo = `
-                <p>Name: ${name}</p>
-                <p>Date: ${date}</p>
-                <p>Manufacturer: ${manufacturer}</p>
-                <p>Type: ${wineType}</p>
+            <p><strong>აღწერა:</strong> ${name}</p>
+            <p><strong>თარიღი:</strong> ${date}</p>
+            <p><strong>წარმოებულია:</strong> ${manufacturer}</p>
+            <p><strong>ტიპი:</strong> ${wineType}</p>
             `;
 
             const qrImageSrc = `/api/generateQR?data=${encodeURIComponent(hash)}&filename=wine_hash_${index + 1}`;
