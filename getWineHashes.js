@@ -54,7 +54,6 @@ const abi = [
     }
 ];
 
-// Contract address
 const contractAddress = '0xD039115CD115A53C1481Da1800f94cf89612CCF6';
 
 // Provider (using a public Ethereum RPC endpoint, e.g., Infura)
@@ -75,16 +74,13 @@ function generateQR(data, filename) {
 }
 
 async function getWineHashes() {
-    // Create a contract instance
     const contract = new ethers.Contract(contractAddress, abi, provider);
 
     try {
-        // Call the getAllWineHashes function
         const wineHashes = await contract.getAllWineHashes();
         console.log('Wine Hashes:');
         wineHashes.forEach((hash, index) => {
             console.log(`Hash ${index + 1}: ${hash}`);
-            // Generate a QR code for each hash
             generateQR(hash, `wine_hash_${index + 1}.png`);
         });
     } catch (error) {
