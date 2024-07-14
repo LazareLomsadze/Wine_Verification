@@ -3,7 +3,9 @@ const path = require('path');
 const QRCode = require('qrcode');
 const { ethers } = require('ethers');
 const { InfuraProvider } = require('@ethersproject/providers');
+
 require('dotenv').config();
+
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -63,7 +65,7 @@ const abi = [
 const contractAddress = '0xD039115CD115A53C1481Da1800f94cf89612CCF6';
 
 // Provider (using a public Ethereum RPC endpoint, e.g., Infura)
-const provider = new InfuraProvider('sepolia', process.env.INFURA_URL);
+const provider = new InfuraProvider('sepolia', '0b2745c0581a43aba9a132e2975cd118');
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -77,6 +79,19 @@ app.get('/api/getWineHashes', async (req, res) => {
     } catch (error) {
         console.error('Error fetching wine hashes:', error);
         res.status(500).json({ error: 'Failed to fetch wine hashes' });
+    }
+});
+
+// API endpoint to get wine details
+app.get('/api/getWineDetails', async (req, res) => {
+    const { hash } = req.query;
+    try {
+        const contract = new ethers.Contract(contractAddress, abi, provider);
+        const wineDetails = await contract.getWine(hash);
+        res.json(wineDetails);
+    } catch (error) {
+        console.error('Error fetching wine details:', error);
+        res.status(500).json({ error: 'Failed to fetch wine details' });
     }
 });
 

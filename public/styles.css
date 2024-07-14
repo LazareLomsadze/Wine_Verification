@@ -46,3 +46,20 @@ button:hover {
     border-radius: 5px;
     background: #fff;
 }
+
+.wine-info {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background: #fff;
+    text-align: left;
+}
+
+.wine-info img {
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.wine-info p {
+    margin: 5px 0;
+}
